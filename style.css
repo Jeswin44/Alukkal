@@ -1,0 +1,608 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --primary: #2563eb;
+    /* Royal Blue 600 */
+    --primary-light: #60a5fa;
+    /* Blue 400 */
+    --primary-dark: #1e40af;
+    /* Blue 800 */
+    --accent: #22d3ee;
+    /* Cyan 400 */
+    --accent-glow: #0ea5e9;
+    /* Sky 500 */
+    --secondary: #0f172a;
+    /* Slate 900 */
+    --success: #10b981;
+    /* Emerald 500 */
+
+    --bg-light: #fdfdfe;
+    /* Almost White */
+    --bg-contrast: #eff6ff;
+    /* Light Blue Tint */
+
+    --text-main: #0f172a;
+    /* Slate 900 */
+    --text-muted: #475569;
+    /* Slate 600 */
+
+    --white: #ffffff;
+    --glass: rgba(255, 255, 255, 0.95);
+
+    --shadow-sm: 0 1px 2px 0 rgb(37 99 235 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(37 99 235 / 0.1), 0 2px 4px -2px rgb(37 99 235 / 0.1);
+    --shadow-lg: 0 20px 25px -5px rgb(37 99 235 / 0.1), 0 8px 10px -6px rgb(37 99 235 / 0.1);
+    --shadow-glow: 0 0 15px rgba(34, 211, 238, 0.5);
+
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background-color: transparent;
+    /* Medical Pattern Background */
+    background-image:
+        radial-gradient(#2563eb 1px, transparent 1px),
+        radial-gradient(#2563eb 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+    /* Ensure opacity is very low to show liquid effect */
+    background-color: rgba(255, 255, 255, 0.85);
+    /* Light overlay to fade the liquid slightly and show pattern */
+    background-blend-mode: overlay;
+
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Utilities */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.section {
+    padding: 6rem 0;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--accent-glow));
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5);
+    filter: brightness(1.1);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-outline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: var(--primary);
+    transition: var(--transition);
+    z-index: -1;
+}
+
+.btn-outline:hover {
+    color: var(--white);
+}
+
+.btn-outline:hover::before {
+    width: 100%;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-sm);
+}
+
+.badge-open {
+    background-color: #d1fae5;
+    color: #059669;
+    border: 1px solid #34d399;
+}
+
+.badge-closed {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #f87171;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow-sm);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 5rem;
+}
+
+.logo {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.logo span {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    background-clip: text;
+    /* Standard property */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 600;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: var(--accent);
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    padding-top: 8rem;
+    min-height: 80vh;
+    /* Reduced height since image is gone */
+    display: flex;
+    align-items: center;
+    /* Removed solid backgrounds to show liquid effect */
+    background: transparent;
+    position: relative;
+    overflow: visible;
+    /* Allow floaters to overlap */
+}
+
+/* Medical Liquid Background */
+/* Medical Liquid Background removed */
+
+@keyframes drift {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+}
+
+/* Hero Content Centered */
+.hero-content {
+    display: flex;
+    /* Changed from grid to flex for centering */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-text p {
+    margin: 0 auto 2.5rem;
+    /* Center the paragraph */
+}
+
+/* Hide Unicorn Studio Branding */
+.us-canvas-logo,
+a[href*="unicorn.studio"] {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+.hero-text h1 {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+    color: var(--secondary);
+}
+
+.hero-text h1 span {
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    background-clip: text;
+    /* Standard property */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-text p {
+    font-size: 1.35rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    max-width: 580px;
+    line-height: 1.7;
+}
+
+.hero-image {
+    position: relative;
+    border-radius: 2.5rem;
+    overflow: hidden;
+    height: 600px;
+    /* Increased height for the effect */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    /* Removed background/blur/border/animation to let the Unicorn Studio effect be the hero */
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+/* Info Cards */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    margin-top: -6rem;
+    position: relative;
+    z-index: 10;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.7);
+    /* Glass effect */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 2.5rem;
+    border-radius: 2rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--primary), var(--accent));
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card-icon {
+    width: 4rem;
+    height: 4rem;
+    background: linear-gradient(135deg, #eff6ff, #e0f2fe);
+    color: var(--primary);
+    border-radius: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    box-shadow: inset 0 2px 4px 0 rgba(255, 255, 255, 0.8);
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--secondary);
+    font-weight: 700;
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+}
+
+/* Order Section Redesign */
+.order-section {
+    background: transparent;
+    /* Remove solid background */
+    position: relative;
+    padding: 6rem 0;
+}
+
+.order-container {
+    background: rgba(255, 255, 255, 0.8);
+    /* Glass effect */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 2rem;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    display: flex;
+    /* Flexbox for better control on varied heights */
+    flex-wrap: wrap;
+    /* Allow wrapping on mobile */
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.order-form {
+    flex: 3;
+    /* Takes up 60% approx */
+    padding: 3.5rem;
+    min-width: 350px;
+}
+
+.order-info {
+    flex: 2;
+    /* Takes up 40% approx */
+    padding: 3.5rem;
+    background: linear-gradient(135deg, var(--secondary), #0f172a);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Vertically align content */
+    position: relative;
+}
+
+/* Decorative element for info panel */
+/* Order info decorative blob removed */
+
+.order-info h3 {
+    color: var(--white);
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.order-info ul {
+    position: relative;
+    gap: 2rem;
+}
+
+.order-info strong {
+    color: var(--accent);
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.order-info p {
+    color: #94a3b8;
+    line-height: 1.5;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--secondary);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.25rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    background: #f8fafc;
+    transition: var(--transition);
+    color: var(--text-main);
+}
+
+.form-control:focus {
+    background: var(--white);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    outline: none;
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Mobile responsive fix for order container */
+@media (max-width: 900px) {
+    .order-container {
+        flex-direction: column;
+    }
+
+    .order-form,
+    .order-info {
+        flex: 1;
+        padding: 2.5rem;
+        width: 100%;
+    }
+
+    .order-info {
+        order: -1;
+        /* Show info on top on mobile, or remove line to keep at bottom */
+        padding-bottom: 4rem;
+    }
+}
+
+/* Footer */
+footer {
+    background: #0f172a;
+    color: var(--white);
+    padding: 5rem 0 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary), var(--accent), var(--success));
+}
+
+.footer-col h4 {
+    font-size: 1.25rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.footer-col p,
+.footer-col a {
+    color: #cbd5e1;
+    font-size: 1rem;
+}
+
+.footer-col a:hover {
+    color: var(--white);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile */
+@media (max-width: 968px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 2rem;
+    }
+
+    .hero-text h1 {
+        font-size: 3.5rem;
+    }
+
+    .hero-text p {
+        margin: 0 auto 2rem;
+    }
+
+    .order-container {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-links {
+        position: relative;
+        flex-direction: column;
+        gap: 1rem;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 1rem;
+        border-radius: 1rem;
+        box-shadow: var(--shadow-md);
+        margin-top: 1rem;
+    }
+
+    nav {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem 0;
+    }
+}
